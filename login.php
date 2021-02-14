@@ -2,12 +2,14 @@
 <?php include('server.php') ?>
 <html class="no-js" lang="">
 
+<link rel = "stylesheet" href = "css/registration.css"/>
+
 <div class="container">
   <div class="header">
-    <h2>Register</h2>
+    <h2 class="center">Log in</h2>
   </div>
 
-  <form action="registration.php" method="post">
+  <form action="login.php" method="post" class="center">
     <div>
       <label for="username">Username</label>
       <input type="text" name="username" required>

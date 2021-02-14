@@ -1,11 +1,10 @@
 <!doctype html>
 <html class="no-js" lang="">
 <meta charset="utf-8">
+
 <?php include('server.php') ?>
 
-<link rel = "stylesheet"
-      type = "text/css"
-      href = "css/registration.css" />
+<link rel = "stylesheet" href = "css/registration.css"/>
 
 <div class="container">
     <div class="header">
@@ -13,6 +12,7 @@
     </div>
 
     <form action="registration.php" method="post" class="center">
+
       <div>
         <label for="username">Username</label>
         <input type="text" name="username" required>
@@ -39,5 +39,4 @@
 
 </div>
 
-<!-- Recommended -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+</html>

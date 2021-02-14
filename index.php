@@ -1,7 +1,8 @@
 <?php
-session_start();
 
-if(isset($_SESSION['username'])){
+include('server.php');
+
+if(!isset($_SESSION['username'])){
   $_SESSION['msg'] = "You must login to view this page";
   header("Location: login.php");
 }
@@ -37,7 +38,6 @@ if(isset($_SESSION['success'])) :
   </div>
 <?php endif ?>
 
-//if the user is logged in
 <?php if (isset($_SESSION['username'])) : ?>
   <h3>
     Welcome <strong> <?php echo $_SESSION['username']; ?> </strong>
