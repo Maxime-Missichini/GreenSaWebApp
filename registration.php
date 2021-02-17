@@ -4,28 +4,28 @@
 
 <?php include('server.php') ?>
 
-<link rel = "stylesheet" href = "css/registration.css"/>
+<link rel = "stylesheet" href = "css/regandlog.css"/>
 
 <div class="container">
     <div class="header">
-      <h2 class="center">Register</h2>
+      <label class="text_header">Register</label>
     </div>
 
-    <form action="registration.php" method="post" class="center">
+    <form action="registration.php" method="post" class="credentials">
 
-      <div>
-        <label for="username">Username</label>
+      <div class="user">
+        <label class="label_cred" for="username">Username</label>
         <input type="text" name="username" required>
       </div>
 
-      <div>
-        <label for="password">Password</label>
-        <input type="text" name="password" required>
+      <div class="user">
+        <label class="label_cred" for="password">Password</label>
+        <input type="password" name="password" required>
       </div>
 
-      <div>
-        <label for="confpassword">Confirm password</label>
-        <input type="text" name="confpassword" required>
+      <div class="user">
+        <label class="label_cred" for="confpassword">Confirm password</label>
+        <input type="password" name="confpassword" required>
       </div>
 
       <button type="submit" name="reg_usr">Register</button>
