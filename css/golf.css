@@ -11,6 +11,19 @@
 
 .tabGolf{
   padding: 10px 10px;
+  border: 1px solid black;
+  background-color: chartreuse;
+}
+
+th, td{
+  padding: 10px 10px;
+  border: 1px solid black;
+  background-color: green;
+}
+
+.already{
+  padding: 10px 10px 10px 10px;
+  color: red;
 }
 
 .text_header {
@@ -22,6 +35,18 @@
   font-style: italic;
   color: white;
   text-shadow: 2px 2px 2px black;
+}
+
+.browse{
+
+}
+
+.add_golf{
+  padding: 10px 10px 0px 10px;
+}
+
+.text_browse{
+
 }
 
 .logout{

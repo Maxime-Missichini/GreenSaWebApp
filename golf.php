@@ -27,16 +27,45 @@ if(isset($_GET['logout'])){
 
   <div class="header">
     <label class="text_header">Your Golfs</label>
-    <button class="logout"><a href="index.php?logout='1'">Log out</button>
+    <button class="logout"><a href="index.php?logout='1'">Log out</a></button>
   </div>
 
   <div class="main_container">
-    <div class="add_golf">
-      <label>Please select the golf (XML file) you want to add</label>
-      <label for="browse">Select a file:</label>
-      <input type="file" id="browse" name="golf_file">
+    <form action="golf.php" method="post" enctype="multipart/form-data" class="add_golf">
+      <label class="text_browse">Please select the golf (XML file) you want to add :</label>
+      <input class="browse" type="file" id="file" name="file">
+      <button class="browse" type="submit" name="submit_file">Submit</button>
+    </form>
 
-    </div>
+    <?php
+    if(!isset($_FILES['file']['error'])){
+    }
+
+    if(isset($_POST['submit_file'])){
+      $xml = simplexml_load_file($_FILES['file']['tmp_name']) or die("can't load xml");
+      $golf_name = $xml->Name;
+      $golf_nb_trou = $xml->NbTrous;
+
+      for($i=1;$i<=$golf_nb_trou;$i++){
+        $golf_coordinates_lat[$i] = $xml->Coordinates->Trou[$i-1]->lat;
+        $golf_coordinates_lng[$i] = $xml->Coordinates->Trou[$i-1]->lng;
+        $golf_coordinates_par[$i] = $xml->Coordinates->Trou[$i-1]->par;
+      }
+      $db = mysqli_connect('localhost','root','','demo') or die('Could not connect to the database');
+      $query = mysqli_query($db,"SELECT idGolf FROM golf WHERE idGolf='$golf_name'");
+      if(!empty($query)){
+        echo "<label class=\"already\">This golf already exist</label>";
+      }else{
+        mysqli_query($db,"INSERT into golf (idGolf, nbTrou) VALUES ('$golf_name','$golf_nb_trou')");
+        for($i=1;$i<=$golf_nb_trou;$i++) {
+          mysqli_query($db, "INSERT into trougolf (idGolf,trou, par) VALUES ('$golf_name','$i','$golf_coordinates_par[$i]')");
+        }
+        header("Location: golf.php");
+      }
+    }
+
+
+    ?>
 
     <?php
 
@@ -50,8 +79,8 @@ if(isset($_GET['logout'])){
       $nbTrou = mysqli_fetch_row($nbTrou_query);
       echo "
                         <div class=\"tabGolf\">
-                            <label><b>Nom du Golf : </b><a>$id[0]</a></label>
-                            <label><b>Nombre de trous : </b><a>$nbTrou[0]</a></label>
+                            <label><b>Nom du Golf : </b>$id[0]</label>
+                            <label><b>Nombre de trous : </b>$nbTrou[0]</label>
                             <table>
                                 <tr>
                                     <th>Trou</th>
@@ -68,7 +97,7 @@ if(isset($_GET['logout'])){
       foreach($pars as $par){
         echo"<td>$par[0]</td>";
       }
-      echo "</div>";
+      echo "</tr></table></div>";
     }
     ?>
 
