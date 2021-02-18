@@ -31,6 +31,11 @@ if(isset($_GET['logout'])){
   </div>
 
   <div class="main_container">
+    <form action="golfCreation.php" method="post" class="add_golf">
+      <label>Create your golf from Google Maps : </label>
+      <button type="submit" name="submit_golf_creation">Submit</button>
+
+    </form>
     <form action="golf.php" method="post" enctype="multipart/form-data" class="add_golf">
       <label class="text_browse">Please select the golf (XML file) you want to add :</label>
       <input class="browse" type="file" id="file" name="file">
@@ -56,6 +61,14 @@ if(isset($_GET['logout'])){
       if(!empty($query)){
         echo "<label class=\"already\">This golf already exist</label>";
       }else{
+        ?>
+
+        <script>
+          var todelete = document.getElementById('todelete');
+          todelete.parentNode.removeChild(todelete);
+        </script>
+
+        <?php
         mysqli_query($db,"INSERT into golf (idGolf, nbTrou) VALUES ('$golf_name','$golf_nb_trou')");
         for($i=1;$i<=$golf_nb_trou;$i++) {
           mysqli_query($db, "INSERT into trougolf (idGolf,trou, par) VALUES ('$golf_name','$i','$golf_coordinates_par[$i]')");
