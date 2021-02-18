@@ -2,7 +2,8 @@
 
 A web interface for GreenSa mobile app
 
-#To do
+
+# To do
 -[ ] Implement Google Maps API
 -[ ] Implement golf creation via Google Maps
 -[ ] Adding styles
