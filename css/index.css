@@ -1,0 +1,119 @@
+html 
+{
+  background: url('../img/test.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/*Navigation*/
+ul
+{
+    list-style-type:none;
+    margin:0;
+	padding:0;
+    overflow:hidden;
+}
+
+/*The icon of user*/
+li a, .dropbtn
+{
+    display:inline-block;
+    color:black;
+    text-align:center;
+}
+  
+/*The drop-down menu*/
+.dropdown-content
+{
+    display:none;
+    background-color:#f9f9f9;
+    min-width:10%;
+	position: absolute;
+	font-family: Georgia, serif;
+}
+  
+/*Modifier profit & Déconnexion*/
+.dropdown-content a
+{
+    color:black;
+    display:block;
+	padding:5%;
+	text-decoration:none;
+}
+
+.dropdown:hover .dropdown-content
+{
+    display:block;
+}
+
+/*The whole section of "Vous souhaitez"*/
+.frame
+{
+  border: 1px solid grey;
+  width: 80%; 
+  margin: 2% 8%;
+  padding: 1% 1%;
+}
+
+/*Divide the section into two by using grid*/
+.wrapper 
+{
+    display: grid;
+	text-align:center;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+}
+
+/*The consultation part takes half of the gride*/
+.consultation 
+{
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+/*The modification part takes other half */
+.modification 
+{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+/*Set the shadow of two photos*/
+.consultation img
+{
+	box-shadow: 18px 12px 3px #D0D0D0;
+}
+
+.modification img
+{
+	box-shadow: 18px 12px 3px #D0D0D0;
+}
+
+/*Font settings, titre is the id of "Welcome! XXXX"*/
+#titre
+{
+	font-family: Georgia, serif;
+	font-size: 180%;
+	font-weight:800;
+	color:white;
+	text-shadow: 1px 1px 1px black;
+}
+
+h2
+{
+	font-family: Georgia, serif;
+	font-size: 190%;
+	font-weight:800;
+	color:white;
+	text-align :center;
+} 
+
+h3
+{
+	font-family: Georgia, serif;
+	font-size: 150%;
+	font-weight:600;
+	color:white;
+} 
