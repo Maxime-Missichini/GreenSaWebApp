@@ -1,4 +1,4 @@
-html 
+html
 {
   background: url('../img/test.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -7,36 +7,84 @@ html
   background-size: cover;
 }
 
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  background-color: green;
+
+}
+
+.logo_section{
+  display:grid;
+  grid-template-columns: 8% 50% 42%;
+  grid-template-rows: 100%;
+  position:relative;
+  left:0;
+  width: 100%;
+  height: 100%;
+}
+
+.text_header {
+  position: relative;
+  top: 25%;
+  left:0;
+  width: 50%;
+  text-align: left;
+  height: 50%;
+  font-size: 30px;
+  font-family: Calibri, serif;
+  font-style: italic;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
 /*Navigation*/
-ul
-{
-    list-style-type:none;
-    margin:0;
-	padding:0;
-    overflow:hidden;
+.user_image{
+  position: relative;
+  width: 94px;
+  right:0;
+  height: 94px;
+}
+
+.logo_image{
+  position: relative;
+  width: 100px;
+  height: 100%;
 }
 
 /*The icon of user*/
-li a, .dropbtn
-{
-    display:inline-block;
-    color:black;
-    text-align:center;
+
+
+.dropdown {
+  text-align: right;
+  position: relative;
+  right:0;
+  top:0;
+  display: inline-block;
 }
-  
+
 /*The drop-down menu*/
 .dropdown-content
 {
-    display:none;
-    background-color:#f9f9f9;
-    min-width:10%;
-	position: absolute;
+  display:none;
+  background-color:#f9f9f9;
+	position: relative;
+  margin-top: 5px;
+
+  width: 94px;
+  text-align: center;
+  right:0;
 	font-family: Georgia, serif;
 }
-  
+
 /*Modifier profit & Déconnexion*/
-.dropdown-content a
+a
 {
+  font-size: 14px;
     color:black;
     display:block;
 	padding:5%;
@@ -51,30 +99,31 @@ li a, .dropbtn
 /*The whole section of "Vous souhaitez"*/
 .frame
 {
-  border: 1px solid grey;
-  width: 80%; 
-  margin: 2% 8%;
+  border: 1px solid black;
+  width: 80%;
+  margin: 10% 8%;
   padding: 1% 1%;
+  background-color: green;
 }
 
 /*Divide the section into two by using grid*/
-.wrapper 
+.wrapper
 {
     display: grid;
-	text-align:center;
+	  text-align:center;
     grid-template-columns: 50% 50%;
     grid-template-rows: 100%;
 }
 
 /*The consultation part takes half of the gride*/
-.consultation 
+.consultation
 {
     grid-column-start: 1;
     grid-column-end: 2;
 }
 
 /*The modification part takes other half */
-.modification 
+.modification
 {
     grid-column-start: 2;
     grid-column-end: 3;
@@ -91,16 +140,6 @@ li a, .dropbtn
 	box-shadow: 18px 12px 3px #D0D0D0;
 }
 
-/*Font settings, titre is the id of "Welcome! XXXX"*/
-#titre
-{
-	font-family: Georgia, serif;
-	font-size: 180%;
-	font-weight:800;
-	color:white;
-	text-shadow: 1px 1px 1px black;
-}
-
 h2
 {
 	font-family: Georgia, serif;
@@ -108,7 +147,9 @@ h2
 	font-weight:800;
 	color:white;
 	text-align :center;
-} 
+  font-style: italic;
+  text-shadow: 2px 2px 2px black;
+}
 
 h3
 {
@@ -116,4 +157,15 @@ h3
 	font-size: 150%;
 	font-weight:600;
 	color:white;
-} 
+  font-style: italic;
+  text-shadow: 2px 2px 2px black;
+}
+
+.dropbtn{
+  margin-right: 50px;
+  text-align: right;
+  display:inline-block;
+  color:black;
+  width: 94px ;
+  height: 200%;
+}
