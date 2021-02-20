@@ -16,10 +16,11 @@ if(isset($_GET['logout'])){
 <!DOCTYPE html>
 <html lang="">
 
-
-
 <head>
   <title>GreenSa - Golf Creation</title>
+  <link rel="stylesheet" href="css/golfCreationMap.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -28,7 +29,17 @@ if(isset($_GET['logout'])){
   <button class="logout"><a href="index.php?logout='1'">Log out</a></button>
 </div>
 
+<div class="main_container">
+  <div id="map"></div>
+  <script>
+    var map = L.map('map').setView([0,0],1);
+    L.tileLayer("https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=fS5G4OHCW6VodEmO0UEM", {
+      attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https:/'+
+        '/www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+    }).addTo(map);
+  </script>
 
+</div>
 </body>
 
 </html>

@@ -9,6 +9,24 @@
 
 }
 
+.text_header {
+  position: relative;
+  top: 0;
+  height: 10%;
+  font-size: 30px;
+  font-family: Calibri, serif;
+  font-style: italic;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+}
+
+.logout{
+  position: absolute;
+  margin-top: 10px;
+  margin-right: 5px;
+  right: 0;
+}
+
 html {
   background: url('../img/test.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -22,21 +40,14 @@ html {
   top: 100px;
   margin-left: 5%;
   width: 90%;
+  height: 80%;
   background-color: white;
   border: 2px solid black;
 }
 
-.container{
-  height: 500px;
-}
-
 #map {
   height: 100%;
+  width: 100%;
 }
 
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 
