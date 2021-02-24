@@ -32,11 +32,24 @@ if(isset($_GET['logout'])){
 <div class="main_container">
   <div id="map"></div>
   <script>
-    var map = L.map('map').setView([0,0],1);
+    let map = L.map('map').setView([0,0],1);
     L.tileLayer("https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=fS5G4OHCW6VodEmO0UEM", {
       attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https:/'+
         '/www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
     }).addTo(map);
+
+    let marker;
+    let coordinates;
+    map.on('click',function(e){
+      coordinates = e.latlng;
+      if (typeof marker != "undefined"){
+        map.removeLayer(marker);
+      }
+      marker = new L.Marker(e.latlng);
+      map.addLayer(marker);
+      marker.bindPopup('Im a marker');
+    })
+
   </script>
 
 </div>
