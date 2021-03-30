@@ -51,7 +51,11 @@ if(isset($_GET['logout'])){
     })
 
   </script>
-
+  <div class="info_container">
+    <label for="par">Par :</label>
+    <input type="text" name="par" required>
+    <button type="submit" name="submit_trou">Submit</button>
+  </div>
 </div>
 </body>
 
