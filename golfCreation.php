@@ -32,6 +32,7 @@ if(isset($_GET['logout'])){
 <div class="main_container">
   <div id="map"></div>
   <script>
+
     let map = L.map('map').setView([0,0],1);
     L.tileLayer("https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=fS5G4OHCW6VodEmO0UEM", {
       attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https:/'+
@@ -42,6 +43,8 @@ if(isset($_GET['logout'])){
     let coordinates;
     map.on('click',function(e){
       coordinates = e.latlng;
+      latitude = e.lat;
+      longitude = e.lng
       if (typeof marker != "undefined"){
         map.removeLayer(marker);
       }
@@ -56,6 +59,14 @@ if(isset($_GET['logout'])){
     <input type="text" name="par" required>
     <button type="submit" name="submit_trou">Submit</button>
   </div>
+<?php
+  //SUBMIT TROU
+  if (isset($_POST['submit_trou'])){
+    $query = "INSERT INTO trougolf (lat,lng) VALUES ('json.encode','')";
+  }
+
+?>
+  }
 </div>
 </body>
 

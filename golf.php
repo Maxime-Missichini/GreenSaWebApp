@@ -58,7 +58,8 @@ if(isset($_GET['logout'])){
       }
       $db = mysqli_connect('localhost','root','','demo') or die('Could not connect to the database');
       $query = mysqli_query($db,"SELECT idGolf FROM golf WHERE idGolf='$golf_name'");
-      if(!empty($query)){
+
+      if(mysqli_num_rows($query) != 0){
         echo "<label class=\"already\">This golf already exist</label>";
       }else{
         ?>
@@ -71,7 +72,7 @@ if(isset($_GET['logout'])){
         <?php
         mysqli_query($db,"INSERT into golf (idGolf, nbTrou) VALUES ('$golf_name','$golf_nb_trou')");
         for($i=1;$i<=$golf_nb_trou;$i++) {
-          mysqli_query($db, "INSERT into trougolf (idGolf,trou, par) VALUES ('$golf_name','$i','$golf_coordinates_par[$i]')");
+          mysqli_query($db, "INSERT into trougolf (idGolf,trou, par, lat, lng) VALUES ('$golf_name','$i','$golf_coordinates_par[$i]','$golf_coordinates_lat[$i]','$golf_coordinates_lng[$i]')");
         }
         header("Location: golf.php");
       }

@@ -64,6 +64,7 @@ if (!isset($_POST['log_usr'])) {
     header('Location: index.php'); //redirect
 
   }
+
 }
 
 //LOGIN
@@ -90,5 +91,7 @@ if(isset($_POST['log_usr'])){
     }
   }
 }
+
+
 
 
