@@ -3,11 +3,12 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Maxime MISSICHINI -- Full Stack Dev (si si)
+    Yifan TIAN
 
 # THANKS
+    Alexandre Tschoumi
 
-    <name>
 
 # TECHNOLOGY COLOPHON
 

@@ -14,7 +14,7 @@ $errors = array();
 
 $db = mysqli_connect('localhost','root','','demo') or die('Could not connect to the database');
 
-//register
+//REGISTER
 if (!isset($_POST['log_usr'])) {
   if (isset($_POST['username'])) {
     $username = mysqli_real_escape_string($db, $_POST['username']);
