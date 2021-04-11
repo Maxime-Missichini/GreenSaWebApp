@@ -9,6 +9,7 @@
     <label class="text_header">Welcome</label>
   </div>
 
+  <!-- Form for the login part -->
   <form action="login.php" method="post" class="credentials">
   <div class="frame">
     <div class="user">

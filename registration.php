@@ -11,6 +11,7 @@
       <label class="text_header">Register</label>
     </div>
 
+ <!-- Register form -->
     <form action="registration.php" method="post" class="credentials">
 
       <div class="user">

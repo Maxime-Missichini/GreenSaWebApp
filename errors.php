@@ -1,6 +1,9 @@
 <?php include('server.php') ?>
 
-<?php $errors =[]; ?>
+<?php $errors =[];
+
+//          WE DONT REALLY USE THIS PART BUT ITS FOR THE ERRORS
+?>
 <?php if(count($errors) > 0) : ?>
   <div>
     <?php foreach ($errors as $error) : ?>{

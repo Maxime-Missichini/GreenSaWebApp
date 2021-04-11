@@ -2,11 +2,13 @@
 
 include('server.php');
 
+//Check if the user is logged, if not, he's redirected
 if(!isset($_SESSION['username'])){
   $_SESSION['msg'] = "You must login to view this page";
   header("Location: login.php");
 }
 
+//If the user wants to logout, we redirect him and clear session variables
 if(isset($_GET['logout'])){
   session_destroy();
   unset($_SESSION['username']);
@@ -28,6 +30,7 @@ if(isset($_GET['logout'])){
 
   <div class="logo_section">
     <img class="logo_image" src="./img/Logo1.png" alt="GreenSa logo"/>
+    <!-- Show username using php if logged -->
     <?php if (isset($_SESSION['username'])) : ?>
 		<label class="text_header"> Welcome!  <?php echo $_SESSION['username']; ?></label>
     <?php endif ?>

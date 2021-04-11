@@ -2,11 +2,13 @@
 <!--Changement de mot de passe-->
 <?php include('server.php');
 
+//Check if the user is logged, if not, he's redirected
 if(!isset($_SESSION['username'])){
   $_SESSION['msg'] = "You must login to view this page";
   header("Location: login.php");
 }
 
+//If the user wants to logout, we redirect him and clear session variables
 if(isset($_GET['logout'])){
   session_destroy();
   unset($_SESSION['username']);
@@ -25,11 +27,12 @@ if(isset($_GET['logout'])){
 
 <!-- Navigation -->
 <div class="header">
+  <!-- ? after the page send information after the = to the GET method -->
     <label class="text_header">Edit Your Profile</label>
     <button class="logout"><a href="index.php?logout='1'">Log out</a></button>
 </div>
 
-<!--Affichage le nom d'utilisateur dans le cas "Nom d'utilisation"-->
+<!--Affichage le nom d'utilisateur dans le cas "Nom d'utilisateur"-->
 <?php
 	require("./bd.php");
 	$username = $_SESSION["username"];
