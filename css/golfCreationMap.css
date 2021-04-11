@@ -6,6 +6,7 @@
   height: 5%;
   text-align: center;
   background-color: green;
+  z-index: 1;
 
 }
 
