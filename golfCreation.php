@@ -12,13 +12,15 @@
     }
 
     document.cookie = escape(name) + "=" +
-      escape(value) + expires + "; path=/";
+      escape(value) + expires + "; path=/demo";
   }
 </script>
 
 <?php
 
 include('server.php');
+
+$db = mysqli_connect('localhost', 'root', '', 'demo') or die('Could not connect to the database');
 
 if(!isset($_SESSION['username'])){
   $_SESSION['msg'] = "You must login to view this page";
@@ -35,17 +37,21 @@ if(isset($_GET['destroy'])){
   ?>
 <script>
   sessionStorage.clear();
-  createCookie('grnname',"",-1);
-  createCookie('grntrou',"",-1);
 </script>
-<?php
+  <?php
+  $trou = 1;
+  setcookie('grnname',"",time()-3600,'/demo');
+  setcookie('grnnb',"",time()-3600,'/demo');
+  setcookie('grntrou',"",time()-3600,'/demo');
 }
-?>
+if ($_COOKIE['grntrou'] < $_COOKIE['grnnb']) {
+  setcookie('grntrou', $_COOKIE['grntrou'] + 1);
+}
 
+?>
 
 <!DOCTYPE html>
 <html lang="">
-
 <head>
   <title>GreenSa - Golf Creation</title>
   <link rel="stylesheet" href="css/golfCreationMap.css"/>
@@ -58,34 +64,42 @@ if(isset($_GET['destroy'])){
 <div class="header">
   <label class="text_header">Golf Creation</label>
   <button class="logout"><a href="index.php?logout='1'">Log out</a></button>
-  <button class="destroySession"><a href="golfCreation.php?destroy='1'">Destroy session</a></button>
   <button class="backGolf"><a href="golf.php">Back to my golfs</a></button>
-  <form method="post" action="golfCreation.php">
-    <button class="createXML" type="submit" name="submit_xml">Create XML</button>
-  </form>
+  <script>
+    if(sessionStorage.getItem("clicked") === "1") {
+      document.write('<form method="post" action="golfCreation.php"> <button class="createXML" type="submit" name="submit_xml">Create XML</button> </form>');
+    }
+  </script>
 </div>
 
 <div class="form-popup" id="nameForm">
   <form action="golfCreation.php" class="form-container" method="post">
     <h1>Golf name</h1>
 
-    <label for="golfname"><b>Password</b></label>
+    <label for="golfname"><b>Golf name</b></label>
     <input type="text" placeholder="Enter Name" name="golfname" id="golfname" required>
+    <input type="text" placeholder="Number of holes" name="nbtrou" id="nbtrou" required>
     <button type="submit" name="submit_name">Submit</button>
   </form>
 </div>
 
 <script>
-  function logSubmit() {
-    createCookie("grnname", document.getElementById("golfname").value, "15");
-    console.log('cookie cree');
+  function logSubmit(event) {
+    if (document.getElementById("nbtrou").value === '9' || document.getElementById("nbtrou").value === '18') {
+      createCookie("grnname", document.getElementById("golfname").value, "15");
+      createCookie("grnnb", document.getElementById("nbtrou").value, "15")
+      createCookie("grntrou", 0, "15")
+    }
+    else{
+      event.preventDefault();
+      alert('Veuillez rentrer un nombre de trous valide');
+    }
+
   }
   document.getElementById("nameForm").addEventListener('submit', logSubmit);
 
   if(sessionStorage.getItem("clicked") !== "1") {
-    createCookie("grntrou", 1, "10");
     document.getElementById("nameForm").style.display = "block";
-    document.getElementById("main_container").style.display = "none";
   }
 </script>
 
@@ -99,6 +113,7 @@ if(isset($_GET['destroy'])){
       </label>
       <button type="submit" name="submit_trou">Submit</button>
     </form>
+    <button class="destroySession"><a href="golfCreation.php?destroy='1'">Reset</a></button>
   </div>
 
   <script>
@@ -144,38 +159,45 @@ if(isset($_GET['destroy'])){
 
     })
     </script>
+
 <?php
   //SUBMIT GOLF NAME
   if(isset($_POST['submit_name'])){
+
+    $golfname = $_COOKIE['grnname'];
+    $results = mysqli_query($db,"SELECT * FROM golf WHERE idGolf='$golfname'");
+
+    if(mysqli_num_rows($results) === 0){
     ?>
 
     <script>
-      sessionStorage.setItem("clicked",1);
-      console.log("bam");
+      sessionStorage.setItem("clicked",'1');
       document.getElementById("nameForm").style.display = "none";
       document.getElementById("main_container").style.display = "block";
-
     </script>
 
     <?php
+    }else{
+      echo "<label>This golf already exist in your database</label>";
+    }
   }
 
   //SUBMIT GOLF HOLE
   if (isset($_POST['submit_trou'])){
-
+    if ($_COOKIE['grntrou'] <= 9){
       $latitude = 0;
       $longitude = 0;
 
-      $db = mysqli_connect('localhost', 'root', '', 'demo') or die('Could not connect to the database');
       $golfname = $_COOKIE['grnname'];
       $searchname = "SELECT * FROM golf WHERE idGolf='$golfname'";
       $results = mysqli_query($db, $searchname);
 
       if(mysqli_num_rows($results) === 0){
-        $nbTrou = 9;
+        $nbTrou = $_COOKIE['grnnb'];
         $query = "INSERT INTO golf (idGolf,nbTrou) VALUES ('$golfname','$nbTrou')";
         mysqli_query($db,$query);
       }
+
       $trou = $_COOKIE['grntrou'];
 
       if (isset($_COOKIE['grnlat']) && isset($_COOKIE['grnlng'])) {
@@ -186,12 +208,13 @@ if(isset($_GET['destroy'])){
       $par = $_POST['par'];
       $query = "INSERT INTO trougolf (idGolf,trou,par,lat,lng) VALUES ('$golfname','$trou','$par','$latitude','$longitude')";
       mysqli_query($db, $query) or print "erreur";
-      setcookie('grntrou',$trou+1);
+    }else{
+      echo "<script>console.log('Finished');</script>";
+    }
   }
 
   if (isset($_POST['submit_xml'])){
 
-    $db = mysqli_connect('localhost', 'root', '', 'demo') or die('Could not connect to the database');
     $xml = new SimpleXMLElement('<xml/>');
     $nbTrou = $_COOKIE['grntrou'];
     $nom = $_COOKIE['grnname'];
@@ -217,6 +240,7 @@ if(isset($_GET['destroy'])){
       $par = $trou->addChild('par',strval($pars[0]));
       $lat = $trou->addChild('lat',strval($lats[0]));
       $lng = $trou->addChild('lng',strval($lngs[0]));
+
     }
     $filename = 'golf.xml';
     $xml->saveXML($filename);

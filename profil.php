@@ -31,28 +31,21 @@ if(isset($_GET['logout'])){
 
 <!--Affichage le nom d'utilisateur dans le cas "Nom d'utilisation"-->
 <?php
-if(!isset($_COOKIE["username"]))
-{
-	header("location:login.php");
-	exit();
-}
-else
-{
 	require("./bd.php");
-	$username = $_COOKIE["username"];
-	
+	$username = $_SESSION["username"];
+
 	//Connect with the database
 	$connexion_bd = new bd();
     $co = $connexion_bd->connection() or die("Error of connection");
-	
+
 	//run the request and get the info
 	$sql = "SELECT * FROM user WHERE username='$username';";
 	$res = mysqli_query($co,$sql)or die("erreur requete");
-	$row=mysqli_fetch_assoc($res);	
-	
+	$row=mysqli_fetch_assoc($res);
+
 	//stop the connection
 	$connexion_bd->disconnection();
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +60,7 @@ else
 			var passwordLength = document.getElementById("edit_password").value.length;
 			var content = password.value;
 			var spanNode = document.getElementById("user_password");
-			if (passwordLength > 13) 
+			if (passwordLength > 13)
 			{
 				spanNode.innerHTML = "Le mot de passe ne dépasse pas 12 caractères".fontcolor("red");
 				return false;
@@ -95,7 +88,7 @@ else
 			}else{
 				spanNode.innerHTML = "Veuillez saisir le mot de passe".fontcolor("red");
 				return false;
-			}			
+			}
 		}
 		//Check all of them before send the form
 		function checkForm(){
@@ -121,7 +114,7 @@ else
 
 	<label>Confirmation de mot de passe:</label><input type="password" name="upassword" id="upassword"><br>
 	<span id="uupassword" class="error">*</span><br><br><br>
-     
+
      <input class="btn" type="submit" name="submit" value="Enregistrer la modification">
   </form>
 </div>
