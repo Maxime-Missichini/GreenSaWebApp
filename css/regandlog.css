@@ -1,63 +1,114 @@
-html {
-  background: url('../img/test.jpg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+*{
+  margin: 0;
+  padding: 0;
 }
 
-button{
-  position: relative;
-  width: 20%;
-  margin-left: 40%;
+header{
+  display: flex;
+  background: green;
 }
 
-p{
-  text-align: center;
+.logo{
+  display: flex;
 }
 
-
-.label_cred{
-  top: 50%
+.logo img{
+  width: 50px;
+  height: 50px;
+  margin: 5px 5px;
 }
 
-.container{
-  position: relative;
-  margin-top: 20%;
+.logo a{
+  margin: auto 5px;
+  color: white;
+  font-size: 20px;
+  font-family: Helvetica, sans-serif;
+}
+
+.text_header{
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+  margin: 5px 5px;
+  color: white;
+  font-size: 20px;
+  font-family: Helvetica, sans-serif;
+}
+
+.header_text{
+  margin: auto 0;
+}
+
+.main_container{
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 100px;
 }
 
 .credentials{
-  padding: 10px 0;
-  width: 20%;
-  border: 2px solid black;
-  margin-left: 40%;
-  background-color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: forestgreen;
+  padding: 10px;
+  outline: black solid 2px;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
+.log_button{
+
+  display: flex;
   width: 100%;
-  height: 5%;
-  text-align: center;
-  background-color: green;
-
+  margin: 10px 5px;
+  justify-content: center;
 }
 
-.text_header {
-  position: relative;
-  top: 0;
-  height: 10%;
-  font-size: 30px;
-  font-family: Calibri, serif;
-  font-style: italic;
+.log_button button{
+  width: 100px;
+  font-size: 15px;
+  border-radius: 5px;
+  font-family: Helvetica, sans-serif;
+}
+
+.user_container{
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
   color: white;
-  text-shadow: 2px 2px 2px black;
+  font-family: Helvetica, sans-serif;
 }
 
-.user{
-  display: grid;
-  margin: 5px 20px;
+.label_cred{
+  margin: 0 5px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.password_container{
+  font-size: 15px;
+  color: white;
+  display: flex;
+  margin: 10px 0;
+  font-family: Helvetica, sans-serif;
+}
+
+.inputs{
+  width: 150px;
+}
+
+.register{
+  font-size: 15px;
+  display: flex;
+  color: white;
+  justify-content: center;
+  font-family: Helvetica, sans-serif;
+}
+
+.register b{
+  margin: 0 5px;
 }
 

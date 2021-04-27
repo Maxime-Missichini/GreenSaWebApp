@@ -6,38 +6,54 @@
 
 <link rel = "stylesheet" href = "css/regandlog.css"/>
 
-<div class="container">
-    <div class="header">
-      <label class="text_header">Register</label>
+<head>
+  <title>Green'Sa - Inscription</title>
+  <link rel="icon" href="./img/Logo1.png">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="./img/Logo1.png" alt="Logo"/>
+      <a>Green'Sa</a>
+    </div>
+    <div class="text_header">
+      <label class="header_text">Bienvenue</label>
+    </div>
+  </header>
+
+   <!-- Register form -->
+    <div class="main_container">
+      <form action="registration.php" method="post" class="credentials">
+
+        <div class="user_container">
+          <label class="label_cred" for="username">Nom d'utilisateur</label>
+          <input class="inputs" type="text" name="username" required>
+        </div>
+
+        <div class="password_container">
+          <label class="label_cred" for="password">Mot de passe</label>
+          <input class="inputs" type="password" name="password" required>
+        </div>
+
+        <div class="password_container">
+          <label class="label_cred" for="confpassword">Confirmation</label>
+          <input class="inputs" type="password" name="confpassword" required>
+        </div>
+
+        <div class="log_button">
+         <button type="submit" name="reg_usr">S'enregistrer</button>
+        </div>
+
+        <div class="register"> Déjà inscrit ?
+          <a href="login.php">
+            <b>Se connecter</b>
+          </a>
+        </div>
+      </form>
     </div>
 
- <!-- Register form -->
-    <form action="registration.php" method="post" class="credentials">
-
-      <div class="user">
-        <label class="label_cred" for="username">Username</label>
-        <input type="text" name="username" required>
-      </div>
-
-      <div class="user">
-        <label class="label_cred" for="password">Password</label>
-        <input type="password" name="password" required>
-      </div>
-
-      <div class="user">
-        <label class="label_cred" for="confpassword">Confirm password</label>
-        <input type="password" name="confpassword" required>
-      </div>
-
-      <button type="submit" name="reg_usr">Register</button>
-      <p> Already a user ?
-        <a href="login.php">
-          <b>Log in</b>
-        </a>
-      </p>
-    </form>
-
-
-</div>
+</body>
 
 </html>
