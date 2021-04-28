@@ -17,33 +17,60 @@ if(isset($_GET['logout'])){
 
 ?>
 
-<html class="no-js" lang="">
+<html class="no-js" lang="fr">
 
 <link rel = "stylesheet" href = "css/golf.css"/>
 
 <head>
-  <title>GreenSa - Vos golfs</title>
+  <title>Green'Sa - Vos golfs</title>
+  <link rel="icon" href="./img/Logo1.png">
 </head>
 
 <body>
 
-  <div class="header">
-    <label class="text_header">Your Golfs</label>
-    <!-- ? after the page send information after the = to the GET method -->
-    <button class="logout"><a href="index.php?logout='1'">Log out</a></button>
+<header>
+
+  <div class="logo_section">
+
+    <div class="logo">
+      <img src="./img/Logo1.png" alt="Logo"/>
+      <a>Green'Sa</a>
+    </div>
+
+    <div class="previous_btn">
+      <a href="index.php">Retour à l'acceuil</a>
+    </div>
+
+    <div class="text_header">
+      <label class="header_text">Vos golfs</label>
+    </div>
+    <!-- The drop down user menu -->
+    <div class="dropbtn">
+      <img id="user_image" class="user_image" src="./img/user.png" alt="User logo"/>
+      <div class="dropdown-content">
+        <a href="profil.php">Modifier profil</a>
+        <a href="index.php?logout='1'">Déconnexion</a>
+      </div>
+    </div>
   </div>
+
+</header>
 
   <div class="main_container">
     <!-- Two forms, one to modify golfs and one to view them (might be useless to have2 -->
-    <form action="golfCreation.php" method="post" class="add_golf">
-      <label>Create your golf from Google Maps : </label>
-      <button type="submit" name="submit_golf_creation">Submit</button>
-    </form>
-    <form action="golf.php" method="post" enctype="multipart/form-data" class="add_golf">
-      <label class="text_browse">Please select the golf (XML file) you want to add :</label>
-      <input class="browse" type="file" id="file" name="file">
-      <button class="browse" type="submit" name="submit_file">Submit</button>
-    </form>
+    <div class="map_submit_container">
+      <form action="golfCreation.php" method="post" class="add_golf">
+        <label>Créez votre golf avec un carte : </label>
+        <button type="submit" class="creation_btn" name="submit_golf_creation">Créer</button>
+      </form>
+
+      <form action="golf.php" method="post" enctype="multipart/form-data" class="add_golf">
+        <label class="text_browse">Veuillez sélectionner le golf (en fichier XML) que vous voulez ajouter :</label>
+        <input class="browse" type="file" id="file" name="file" style="visibility: hidden">
+        <button class="browse_btn" style="display:block;width:200px; height:30px;" onclick="document.getElementById('file').click()">Selectionnez un golf</button>
+        <button class="browse" style="width:100px;" type="submit" name="submit_file">Importer le golf</button>
+      </form>
+    </div>
 
     <?php
     //Not used currently

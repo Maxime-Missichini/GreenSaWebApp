@@ -63,10 +63,11 @@ if (isset($_COOKIE['grnnb'])) {
 <!-- //////////////////////////////////// HTML BEGIN, NO MORE HEADERS NOW ////////////////////////////////////////// -->
 
 <!DOCTYPE html>
-<html lang="">
+<html lang="fr">
 <!-- HEAD -->
 <head>
-  <title>GreenSa - Golf Creation</title>
+  <title>Green'Sa - Création de golf</title>
+  <link rel="icon" href="./img/Logo1.png">
   <link rel="stylesheet" href="css/golfCreationMap.css"/>
   <!-- link for the map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -75,29 +76,45 @@ if (isset($_COOKIE['grnnb'])) {
 
 <!-- BODY -->
 <body>
-<div class="header">
-  <label class="text_header">Golf Creation</label>
-  <!-- ? after the page send information after the = to the GET method -->
-  <button class="logout"><a href="index.php?logout='1'">Log out</a></button>
-  <button class="backGolf"><a href="golf.php">Back to my golfs</a></button>
-  <script>
-    <!-- If we already filed the golf name, we can now generate XML file with the golf inside -->
-    if(sessionStorage.getItem("clicked") === "1") {
-      document.write('<form method="post" action="golfCreation.php"> <button class="createXML" type="submit" name="submit_xml">Create XML</button> </form>');
-    }
-  </script>
-</div>
+<header>
+
+  <div class="logo_section">
+
+    <div class="logo">
+      <img src="./img/Logo1.png" alt="Logo"/>
+      <a>Green'Sa</a>
+    </div>
+
+    <div class="previous_btn">
+      <a href="index.php">Retour à mes golfs</a>
+    </div>
+
+    <div class="text_header">
+      <label class="header_text">Création de golf</label>
+    </div>
+    <!-- The drop down user menu -->
+    <div class="dropbtn">
+      <img id="user_image" class="user_image" src="./img/user.png" alt="User logo"/>
+      <div class="dropdown-content">
+        <a href="profil.php">Modifier profil</a>
+        <a href="index.php?logout='1'">Déconnexion</a>
+      </div>
+    </div>
+  </div>
+
+</header>
 
 <div class="form-popup" id="nameForm">
   <!-- Form for the golf name and the number of holes (9 or 18) -->
   <form action="golfCreation.php" class="form-container" method="post">
-    <h1>Golf name</h1>
+    <h1>Informations sur le golf</h1>
 
-    <label for="golfname"><b>Golf name</b></label>
-    <input type="text" placeholder="Enter Name" name="golfname" id="golfname" required>
+    <label for="golfname"><b>Nom du golf</b></label>
+    <input type="text" placeholder="Entrez le nom" name="golfname" id="golfname" required>
     <!-- type number to prevent string inputs -->
-    <input type="number" placeholder="Number of holes" name="nbtrou" id="nbtrou" required>
-    <button type="submit" name="submit_name">Submit</button>
+    <label for="nbtrou"><b>Nombre de trous</b></label>
+    <input type="number" placeholder="Entrez le nombre" name="nbtrou" id="nbtrou" required>
+    <button type="submit" name="submit_name">Suivant</button>
   </form>
 </div>
 
@@ -130,14 +147,19 @@ if (isset($_COOKIE['grnnb'])) {
 <div class="main_container" id="main_container">
   <div id="map"></div>
   <div class="info_container">
-    <form action="golfCreation.php" method="post" autocomplete="off">
-      <label>Par :
+    <form action="golfCreation.php" method="post" autocomplete="off" class="info_form">
+      <label for="par">Entrez le par du trou courant :</label>
         <!-- type number to prevent string inputs -->
-        <input type="number" name="par" id="par" required>
-      </label>
-      <button type="submit" name="submit_trou">Submit</button>
+      <input type="number" name="par" id="par" required>
+      <button type="submit" name="submit_trou">Confirmer</button>
     </form>
-    <button class="destroySession"><a href="golfCreation.php?destroy='1'">Reset</a></button>
+    <button class="destroySession"><a href="golfCreation.php?destroy='1'">Réinitialiser</a></button>
+    <script>
+      <!-- If we already filed the golf name, we can now generate XML file with the golf inside -->
+      if(sessionStorage.getItem("clicked") === "1") {
+        document.write('<form method="post" action="golfCreation.php" class="submit_form"> <button class="createXML" type="submit" name="submit_xml">Créer un fichier XML</button> </form>');
+      }
+    </script>
   </div>
 
   <!-- Map script, here we use some leaflet functions -->
