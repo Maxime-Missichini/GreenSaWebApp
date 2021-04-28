@@ -76,6 +76,10 @@ if(isset($_GET['logout'])){
 		<h3> Modifier vos golf </h3>
   </div>
 
+  <video autoplay muted loop id="background_video">
+    <source src="./media/index_video.mp4" type="video/mp4">
+  </video>
+
 </div>
 
 </html>

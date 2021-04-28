@@ -19,8 +19,6 @@ if(isset($_GET['logout'])){
 
 ?>
 
-<link rel = "stylesheet" href = "./css/profil.css"/>
-
 <head>
   <title>Green'Sa - Modification du profil</title>
   <link rel="icon" href="./img/Logo1.png">
@@ -44,7 +42,7 @@ if(isset($_GET['logout'])){
     </div>
 
     <div class="text_header">
-      <label class="header_text">Création de golf</label>
+      <label class="header_text">Modification du profil</label>
     </div>
     <!-- The drop down user menu -->
     <div class="dropbtn">
@@ -130,15 +128,20 @@ if(isset($_GET['logout'])){
 
   <div class="main_container">
    <form method="post" action="./update.php" align="center" onsubmit="return checkForm()" class="main_form">
-       Nom d'utilisateur:<input type="text" name="username" value="<?php echo $username ?>" readonly="readonly"><br><br>
-
-       <label>Nouveau mot de passe:</label><span id="user_password" class="error">*</span><input type="password" name="edit_password" id="edit_password"><br>
+     <div class="username">
+       <div><label>Nom d'utilisateur:</label></div><input type="text" name="username" value="<?php echo $username ?>" readonly="readonly"><br><br>
+     </div>
+     <div class="password1">
+       <div><label>Nouveau mot de passe:</label><span id="user_password" class="error">*</span></div><input type="password" name="edit_password" id="edit_password"><br>
     <br><br>
-
-    <label>Confirmation du mot de passe:</label><span id="uupassword" class="error">*</span><input type="password" name="upassword" id="upassword"><br>
+     </div>
+     <div class="password2">
+       <div><label>Confirmation du mot de passe:</label><span id="uupassword" class="error">*</span></div><input type="password" name="upassword" id="upassword"><br>
     <br><br><br>
-
-       <input class="btn" type="submit" name="submit" value="Enregistrer la modification">
+     </div>
+     <div class="btn">
+       <input type="submit" name="submit" value="Enregistrer la modification">
+      </div>
     </form>
   </div>
 

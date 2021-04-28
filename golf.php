@@ -156,6 +156,10 @@ if(isset($_GET['logout'])){
     }
     ?>
 
+    <video autoplay muted loop id="background_video">
+      <source src="./media/golf_main_video.mp4" type="video/mp4">
+    </video>
+
   </div>
 
 

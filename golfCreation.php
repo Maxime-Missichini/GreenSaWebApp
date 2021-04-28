@@ -310,7 +310,12 @@ if (isset($_COOKIE['grnnb'])) {
 ?>
 
 
+
 </div>
+
+<video autoplay muted loop id="background_video">
+  <source src="./media/golf_creation_video.mp4" type="video/mp4">
+</video>
 
 <script>
   //If the golf name form is not completed, we don't show the map, it's here because we need main_container to be defined

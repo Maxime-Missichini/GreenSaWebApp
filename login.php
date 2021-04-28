@@ -45,6 +45,10 @@
 
     </form>
 
+    <video autoplay muted loop id="background_video">
+      <source src="./media/login_register_video.mp4" type="video/mp4">
+    </video>
+
   </div>
 
 </body>

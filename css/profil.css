@@ -82,14 +82,11 @@ header{
 .main_container{
   display: flex;
   justify-content: center;
-  width: 70%;
-  height: 600px;
-  margin-left: 15%;
+  width: 50%;
+  margin-left: 25%;
   margin-top: 100px;
-  flex-direction: column;
   background: forestgreen;
   padding: 10px;
-  padding-bottom: 80px;
   outline: black solid 2px;
 }
 
@@ -101,3 +98,55 @@ header{
   font-family: Helvetica, sans-serif;
 }
 
+.main_form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input{
+  width: 50%;
+  height: 20px;
+}
+
+.btn{
+  display: flex;
+  width: 100%;
+  margin: 10px 10px;
+  justify-content: center;
+}
+
+.username{
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin: 0 20px;
+}
+
+.password1{
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin: 0 20px;
+}
+
+.password2{
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  margin: 0 20px;
+}
+
+#upassword{
+  flex-direction: row-reverse;
+}
+
+#background_video{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 70%;
+  z-index: -50;
+}
