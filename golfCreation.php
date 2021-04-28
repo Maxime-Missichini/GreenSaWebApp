@@ -86,7 +86,7 @@ if (isset($_COOKIE['grnnb'])) {
     </div>
 
     <div class="previous_btn">
-      <a href="index.php">Retour à mes golfs</a>
+      <a href="golf.php">Retour à mes golfs</a>
     </div>
 
     <div class="text_header">
@@ -157,7 +157,7 @@ if (isset($_COOKIE['grnnb'])) {
     <script>
       <!-- If we already filed the golf name, we can now generate XML file with the golf inside -->
       if(sessionStorage.getItem("clicked") === "1") {
-        document.write('<form method="post" action="golfCreation.php" class="submit_form"> <button class="createXML" type="submit" name="submit_xml">Créer un fichier XML</button> </form>');
+        document.write('<form method="post" action="golfCreation.php" class="submit_form"> <button class="createXML" type="submit" name="submit_xml">Créer le fichier XML</button> </form>');
       }
     </script>
   </div>

@@ -89,7 +89,7 @@ header{
   flex-direction: column;
   background: forestgreen;
   padding: 10px;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
   outline: black solid 2px;
 }
 
@@ -122,15 +122,28 @@ header{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 50%;
 }
 
 .info_form{
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  align-items: center;
+  margin: 5px 0;
 }
 
+.info_form button{
+  margin: 5px 0;
+}
 
+.destroySession{
+  width: 100px;
+  align-self: center;
+  margin: 5px 0;
+}
+
+.submit_form{
+  display: flex;
+  justify-content: center;
+}
 

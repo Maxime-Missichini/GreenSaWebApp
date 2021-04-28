@@ -1,4 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="utf-8">
 <!--Changement de mot de passe-->
 <?php include('server.php');
 
@@ -17,20 +19,44 @@ if(isset($_GET['logout'])){
 
 ?>
 
-<html class="no-js" lang="">
 <link rel = "stylesheet" href = "./css/profil.css"/>
 
+<head>
+  <title>Green'Sa - Modification du profil</title>
+  <link rel="icon" href="./img/Logo1.png">
+  <link rel = "stylesheet" href = "./css/profil.css"/>
+</head>
+
 <body>
-<header>
-	<title>GreenSa - Modification du profil</title>
-</header>
 
 <!-- Navigation -->
-<div class="header">
-  <!-- ? after the page send information after the = to the GET method -->
-    <label class="text_header">Edit Your Profile</label>
-    <button class="logout"><a href="index.php?logout='1'">Log out</a></button>
-</div>
+<header>
+
+  <div class="logo_section">
+
+    <div class="logo">
+      <img src="./img/Logo1.png" alt="Logo"/>
+      <a>Green'Sa</a>
+    </div>
+
+    <div class="previous_btn">
+      <a href="index.php">Retour à l'acceuil</a>
+    </div>
+
+    <div class="text_header">
+      <label class="header_text">Création de golf</label>
+    </div>
+    <!-- The drop down user menu -->
+    <div class="dropbtn">
+      <img id="user_image" class="user_image" src="./img/user.png" alt="User logo"/>
+      <div class="dropdown-content">
+        <a href="profil.php">Modifier profil</a>
+        <a href="index.php?logout='1'">Déconnexion</a>
+      </div>
+    </div>
+  </div>
+
+</header>
 
 <!--Affichage le nom d'utilisateur dans le cas "Nom d'utilisateur"-->
 <?php
@@ -51,11 +77,7 @@ if(isset($_GET['logout'])){
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title></title>
+
 <script type="text/javascript">
 		//check the new password
 		function checkPassword(){
@@ -104,22 +126,21 @@ if(isset($_GET['logout'])){
 				return false;
 			}
 		}
-	</script>
-</head>
+</script>
 
-<body>
-<div class="main_container">
- <form method="post" action="./update.php" align="center" onsubmit="return checkForm()" class="main_form">
-     Nom d'utilisation:&nbsp&nbsp&nbsp<input type="text" name="username" value="<?php echo $username ?>" readonly="readonly"><br><br>
+  <div class="main_container">
+   <form method="post" action="./update.php" align="center" onsubmit="return checkForm()" class="main_form">
+       Nom d'utilisateur:<input type="text" name="username" value="<?php echo $username ?>" readonly="readonly"><br><br>
 
-     <label>Nouvel mot de passe:</label>&nbsp&nbsp&nbsp&nbsp<input type="password" name="edit_password" id="edit_password"><br>
-	<span id="user_password" class="error">*</span><br><br>
+       <label>Nouveau mot de passe:</label><span id="user_password" class="error">*</span><input type="password" name="edit_password" id="edit_password"><br>
+    <br><br>
 
-	<label>Confirmation de mot de passe:</label><input type="password" name="upassword" id="upassword"><br>
-	<span id="uupassword" class="error">*</span><br><br><br>
+    <label>Confirmation du mot de passe:</label><span id="uupassword" class="error">*</span><input type="password" name="upassword" id="upassword"><br>
+    <br><br><br>
 
-     <input class="btn" type="submit" name="submit" value="Enregistrer la modification">
-  </form>
-</div>
+       <input class="btn" type="submit" name="submit" value="Enregistrer la modification">
+    </form>
+  </div>
+
 </body>
 </html>
