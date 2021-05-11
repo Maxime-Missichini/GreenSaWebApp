@@ -79,6 +79,21 @@ header{
   text-align: center;
 }
 
+/*CSS of popover msg*/
+.popover.top>.arrow{
+  left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+}
+.popover.top{
+  left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto;
+    max-width: 200px;
+    text-align: center;
+}
+/*End of popover*/
+
 .main_container{
   display: flex;
   justify-content: center;
@@ -137,7 +152,7 @@ input{
   margin: 0 20px;
 }
 
-#upassword{
+#signup_confirm_password{
   flex-direction: row-reverse;
 }
 

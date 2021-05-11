@@ -23,6 +23,10 @@ if(isset($_GET['logout'])){
   <title>Green'Sa - Modification du profil</title>
   <link rel="icon" href="./img/Logo1.png">
   <link rel = "stylesheet" href = "./css/profil.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -75,75 +79,87 @@ if(isset($_GET['logout'])){
 
 ?>
 
+  <div class="main_container">
+	<form class="main_form" method="post" action="./update.php" align="center"  name="data_form" id="data_form">
+
+	<div class="username">
+		<label>Nom d'utilisateur:</label><input type="text" name="username" value="<?php echo $username ?>" readonly="readonly">
+	</div>
+    <br>
+	
+	<div class="password1">
+		<label>Nouveau mot de passe:</label><input type="password" id="signup_password" name="signup_password" class="form-control enb_dsb_fld mv_next" placeholder="Password" required="required">
+	</div>
+    <br><br>
+	
+	<div class="password2">
+		<label>Confirmation du mot de passe:</label><input type="password" id="signup_confirm_password" name="signup_confirm_password" class="form-control enb_dsb_fld mv_next" placeholder="Retype Password" required="required"><br>
+	</div>
+	
+	<div class="btn">
+		<button type="button" id="save_btn" name="save_btn" class="btn btn-success save_btn btn-sm">Enregistrer la modification</button> 
+	</div>
+</form>
+</div>
+
+<!--Jquery validation + boostrap popover-->
+<!-- Source: https://stackoverflow.com/questions/59065265/jquery-validation-popover-position-problem-for-select2-dropdown-->
 
 <script type="text/javascript">
-		//check the new password
-		function checkPassword(){
-			var password = document.getElementById("edit_password");
-			var passwordLength = document.getElementById("edit_password").value.length;
-			var content = password.value;
-			var spanNode = document.getElementById("user_password");
-			if (passwordLength > 13)
-			{
-				spanNode.innerHTML = "Le mot de passe ne dépasse pas 12 caractères".fontcolor("red");
-				return false;
-			}
-			if (content != "") {
-				spanNode.innerHTML = "Saisi".fontcolor("green");
-				return true;
-			}else{
-				spanNode.innerHTML = "Le mot de passe est vide".fontcolor("red");
-				return false;
-			}
-		}
-		//check another time
-		function checkUpassword(){
-			var password = document.getElementById("edit_password").value;
-			var upassword = document.getElementById("upassword").value;
-			var spanNode = document.getElementById("uupassword");
-			if (upassword != password) {
-				spanNode.innerHTML = "Mot de passe différent, veuillez reéssayer".fontcolor("red");
-				return false;
-			}
-			if (upassword != "") {
-				spanNode.innerHTML = "Saisi".fontcolor("green");
-				return true;
-			}else{
-				spanNode.innerHTML = "Veuillez saisir le mot de passe".fontcolor("red");
-				return false;
-			}
-		}
-		//Check all of them before send the form
-		function checkForm(){
-			var add_password = checkPassword();
-			var upassword = checkUpassword();
-			if (add_password && upassword){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
+$(document).ready(function(){
+  my_validate();
+})
+var data_form = $( "#data_form" );
+
+function my_validate(){
+ data_form.validate( {
+	rules: { 
+      signup_password: { 
+       required: true, 
+       maxlength: 12 
+      }, 
+      signup_confirm_password: { 
+       required: true, 
+       equalTo: "#signup_password" 
+      } 
+     }, 
+	 
+    messages:{
+        signup_password:{
+          required: "Veuillez saisir un mot de passe", 
+		  maxlength: "Le mot de passe ne dépasse pas 12 caractères" 
+        },
+        signup_confirm_password:{
+          required: "Veuillez re-saisir le mot de passe", 
+		  equalTo: "Mot de passe différent, veuillez reéssayer"
+        }
+    },
+	
+    errorClass: "my-error-class",
+    showErrors: function(errorMap, errorList) {
+        $.each( this.successList , function(index, value) {
+            $(value).popover('hide');
+        }); 
+        $.each( errorList , function(index, value) {
+         
+          var popoverDta = $(value.element).popover({
+                trigger   : 'manual',
+                placement : 'top',
+                content   : value.message,
+                template  : '<div class="popover"><div class="arrow"></div><div class="popover-inner"><div class="popover-content text-danger"><p></p></div></div></div>'
+          });                      
+          $(value.element).data('bs.popover').options.content = value.message;
+              $(value.element).popover('show');
+          });
+    }        
+}); 
+}
+$(document).on('click',".save_btn",function(){
+if(data_form.valid() == true)
+{
+	document.getElementById("data_form").submit();
+}
+});
 </script>
-
-  <div class="main_container">
-   <form method="post" action="./update.php" align="center" onsubmit="return checkForm()" class="main_form">
-     <div class="username">
-       <div><label>Nom d'utilisateur:</label></div><input type="text" name="username" value="<?php echo $username ?>" readonly="readonly"><br><br>
-     </div>
-     <div class="password1">
-       <div><label>Nouveau mot de passe:</label><span id="user_password" class="error">*</span></div><input type="password" name="edit_password" id="edit_password"><br>
-    <br><br>
-     </div>
-     <div class="password2">
-       <div><label>Confirmation du mot de passe:</label><span id="uupassword" class="error">*</span></div><input type="password" name="upassword" id="upassword"><br>
-    <br><br><br>
-     </div>
-     <div class="btn">
-       <input type="submit" name="submit" value="Enregistrer la modification">
-      </div>
-    </form>
-  </div>
-
 </body>
 </html>

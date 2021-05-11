@@ -9,7 +9,7 @@ if(!isset($_SESSION['username'])){
 
 require("./bd.php");
 $name = $_SESSION['username'];
-$u_password = md5($_POST['edit_password']);
+$u_password = md5($_POST['signup_password']);
 $connexion_bd = new bd();
 $co = $connexion_bd->connection() or die("Error of connection");
 
