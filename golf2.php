@@ -70,11 +70,11 @@ $username=$_SESSION['username'];
 
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
 	  <li class="nav-item">
-		<a class="nav-link" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="true" style="color: black;">Création</a>
+		<a class="nav-link active" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="true" style="color: black;">Création</a>
 	  </li>
 	  
 	  <li class="nav-item">
-		<a class="nav-link active" id="consult-tab" data-toggle="tab" href="#consult" role="tab" aria-controls="consult" aria-selected="false" style="color: black;">Consultation</a>
+		<a class="nav-link" id="consult-tab" data-toggle="tab" href="#consult" role="tab" aria-controls="consult" aria-selected="false" style="color: black;">Consultation</a>
 	  </li>
 	  
 	  <li class="nav-item">
@@ -85,7 +85,7 @@ $username=$_SESSION['username'];
    <div class="tab-content" id="nav-myTabContent">
    
    <!--The part of create of golf (copy-paste of previous code)-->
-	<div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="create-tab">
+	<div class="tab-pane fade  show active" id="create" role="tabpanel" aria-labelledby="create-tab">
 		<!-- Two forms, one to modify golfs and one to view them (might be useless to have2 -->
 		<div class="map_submit_container">
 		  <form action="golfCreation.php" method="post" class="add_golf">
@@ -145,7 +145,7 @@ $username=$_SESSION['username'];
 		?>
 	</div>
   
-  <div class="tab-pane fade show active" id="consult" role="tabpanel" aria-labelledby="consult-tab">
+  <div class="tab-pane fade" id="consult" role="tabpanel" aria-labelledby="consult-tab">
   <!--The part of consult of golf (also copy-paste)-->
 	<?php
     //Show the golf automatically using the database

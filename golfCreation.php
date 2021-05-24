@@ -57,7 +57,7 @@ if (isset($_COOKIE['grnnb'])) {
     setcookie('grntrou', $_COOKIE['grntrou'] + 1);
   }
 }
-
+$username=$_SESSION['username'];
 ?>
 
 <!-- //////////////////////////////////// HTML BEGIN, NO MORE HEADERS NOW ////////////////////////////////////////// -->
@@ -214,8 +214,8 @@ if (isset($_COOKIE['grnnb'])) {
   //SUBMIT GOLF NAME
   if(isset($_POST['submit_name'])){
 
-    $golfname = $_COOKIE['grnname'];
-    $results = mysqli_query($db,"SELECT * FROM golf WHERE idGolf='$golfname'");
+    $golfname = $_POST['golfname'];
+    $results = mysqli_query($db,"SELECT * FROM golf WHERE idGolf='$golfname' AND username='$username'");
 
     //If the golf don't exist we can proceed to show the map and close the golf name form
     if(mysqli_num_rows($results) === 0){
@@ -240,13 +240,13 @@ if (isset($_COOKIE['grnnb'])) {
       $latitude = 0;
       $longitude = 0;
       $golfname = $_COOKIE['grnname'];
-      $searchname = "SELECT * FROM golf WHERE idGolf='$golfname'";
+      $searchname = "SELECT * FROM golf WHERE idGolf='$golfname' AND username='$username'";
       $results = mysqli_query($db, $searchname);
 
       //If the golf does not exist we add it to the database (user related)
       if(mysqli_num_rows($results) === 0){
         $nbTrou = $_COOKIE['grnnb'];
-        $query = "INSERT INTO golf (idGolf,nbTrou) VALUES ('$golfname','$nbTrou')";
+        $query = "INSERT INTO golf (idGolf,nbTrou,username) VALUES ('$golfname','$nbTrou','$username')";
         mysqli_query($db,$query);
       }
 
@@ -326,4 +326,3 @@ if (isset($_COOKIE['grnnb'])) {
 </body>
 
 </html>
-
