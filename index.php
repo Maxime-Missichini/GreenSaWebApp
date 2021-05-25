@@ -71,7 +71,7 @@ if(isset($_GET['logout'])){
     <h3>Consulter vos golf </h3>
   </div>
 
-  <div class="modification" onclick="window.location.href= 'golf.php'">
+  <div class="modification" onclick="window.location.href= 'golf2.php'">
     <img src="./img/modification.PNG" alt=""/>
 		<h3> Modifier vos golf </h3>
   </div>
